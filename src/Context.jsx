@@ -1,12 +1,15 @@
 import { useContext, useReducer, useEffect, createContext, Children} from 'react'
 import reducer from './reducer';
+import cartItems from './data';
 import { CLEAR_CART, REMOVE, INCREASE, DECREASE, LOADING, DISPLAY_ITEMS } from './action';
 
 const AppContext = createContext();
 
 const initialState = {
     loading: false,
-    cart: []
+    cart: cartItems,
+    totalItems: cartItems.reduce((acc, item) => acc + item.amount, 0),
+    totalAmount: cartItems.reduce((acc, item) => acc + item.price * item.amount, 0)
 };
 
 
