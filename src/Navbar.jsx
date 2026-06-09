@@ -1,6 +1,6 @@
 import { FaCartPlus } from 'react-icons/fa';
-
 import { useGlobalContext } from './Context';
+import CartContainer from './CartContainer';
 
 const Navbar = () => {
   const { totalItems } = useGlobalContext();

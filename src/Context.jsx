@@ -7,7 +7,7 @@ const AppContext = createContext();
 
 const initialState = {
     loading: false,
-    cart: cartItems,
+    cart: new Map(cartItems.map((item) => [item.id, item])),
     totalItems: cartItems.reduce((acc, item) => acc + item.amount, 0),
     totalAmount: cartItems.reduce((acc, item) => acc + item.price * item.amount, 0)
 };
