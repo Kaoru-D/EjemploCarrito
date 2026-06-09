@@ -4,7 +4,6 @@ import { CLEAR_CART, REMOVE, INCREASE, DECREASE, LOADING, DISPLAY_ITEMS } from '
 
 const AppContext = createContext();
 
-
 const initialState = {
     loading: false,
     cart: []
@@ -13,7 +12,7 @@ const initialState = {
 
 export const AppProvider = ({children})=>{
     const [state, dispatch] = useReducer(reducer, initialState)
-    return <AppContext.Provider value={{...state}}>
+    return <AppContext.Provider value={{...state, dispatch}}>
     {children}
     </AppContext.Provider>    
 }
