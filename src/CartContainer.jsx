@@ -1,9 +1,9 @@
 import CartItem from './CartItem';
-import cartItems from './data';
+import { useGlobalContext } from './Context';
 const CartContainer = () => {
-  const { cart } = useGlobalContext();
+  const { cart, totalItems, totalAmount, clearCart } = useGlobalContext();
 
-  const cartArray = Array.from(cart.values());
+  const cartArray = Array.from(cart.entries());
 
   if (cartArray.length === 0) {
     return (
@@ -34,12 +34,12 @@ const CartContainer = () => {
         <hr />
         <div>
           <h5 className='cart-total'>
-            total <span>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(cartArray.reduce((acc, item) => acc + item.price * item.amount, 0))}</span>
+            total <span>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(cartArray.reduce((acc, [id, item]) => acc + item.price * item.amount, 0))}</span>
           </h5>
         </div>
         <button
           className='btn btn-hipster'
-          onClick={() => console.log('clear cart')}
+          onClick={clearCart}
         >
           limpiar carrito
         </button>
